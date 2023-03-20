@@ -26,7 +26,7 @@ interface LargeHeadingProps
 
 // forwardRef('renderedComponentType', 'props')
 // Passes a ref/link to a DOM node
-const Paragraph = forwardRef<HTMLHeadingElement, LargeHeadingProps>((
+export const LargeHeading = forwardRef<HTMLHeadingElement, LargeHeadingProps>((
     {
         className, size, children, ...props
     }, ref) => {
@@ -41,6 +41,6 @@ const Paragraph = forwardRef<HTMLHeadingElement, LargeHeadingProps>((
     )
 })
 
-Paragraph.displayName = 'Paragraph'
+LargeHeading.displayName = 'Large Heading'
 
-export default Paragraph
+export default LargeHeading
