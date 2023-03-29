@@ -1,7 +1,6 @@
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { db } from "@/lib/db"
 import { NextApiRequest, NextApiResponse } from "next"
-import { fetchData } from "next-auth/client/_utils"
 import {z} from 'zod'
 
 // Define a schema for the accepted request
@@ -10,11 +9,13 @@ const reqSchema = z.object({
 })
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+
     const body = req.body as unknown
     // Get the Authorisation Header
-    const apiKey = req.headers.authorization
+    const apiKey = req.headers.authorization as string
     // If there is no API Key, throw 401: Unauthorised
     if(!apiKey) {
+        console.log('API Key not found in header')
         return res.status(401).json({error: 'Unauthorised'})
     }
 
@@ -30,14 +31,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         })
         // If no valid API Key found
         if(!validApiKey) {
+            console.log('validApiKey not found in db', apiKey)
             return res.status(401).json({error: 'Unauthorised'})
         }
+        console.log('Valid API Key found')
         // Initialise request ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // Get start time
         const start = new Date()
         // API Endpoint
         const url = 'https://api.sapling.ai/api/v1/edits'
-        // Construct request data object
+        // // Construct request data object
         const data = {
             key: process.env.SAPLING_API_KEY,
             text: text,
@@ -47,6 +50,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
         // Make multiple requests simultaneously with Promise.all()
         // const edits = await Promise.all(
+            // add typings for the handler and resp, see index.d.ts and create-api-key.ts
             const editsRes = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -62,7 +66,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         // )
         // Returns how long requests took in milliseconds [ms]
         const duration = new Date().getTime() - start.getTime()
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         await db.apiRequest.create({
             data: {
                 duration,
@@ -74,13 +78,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             },
         })
         // Return success, original text and edits
-        return res.status(200).json({success: true, text, appliedText, edits, })
+        return res.status(200).json({success: true, appliedText: appliedText})
     } catch (error) {
         // If not parsed correctly
         if(error instanceof z.ZodError){
+            console.log('Zod Error')
             return res.status(400).json({error: error.issues})
         }
-
+        // Otherwise return generic error
         return res.status(500).json({ error: 'Internal Server Error' })
     }
 }

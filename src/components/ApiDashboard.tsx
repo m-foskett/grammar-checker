@@ -2,20 +2,20 @@ import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { getServerSession } from 'next-auth'
 import { notFound } from 'next/navigation'
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 import { formatDistance } from 'date-fns'
 import LargeHeading from '@/ui/LargeHeading'
 import Paragraph from '@/ui/Paragraph'
 import { Input } from '@/ui/Input'
 import Table from '@/components/Table'
 import ApiKeyOptions from '@/components/ApiKeyOptions'
+import EditDemo from '@/components/EditDemo'
 
 const ApiDashboard = async () => {
     // User data
     const user = await getServerSession(authOptions)
     // If user not found, throw 404
     if(!user) notFound()
-
     // Get API Keys of user, past and current valid
     const apiKeys = await db.apiKey.findMany({
       where: {userId: user.user.id },
@@ -40,17 +40,22 @@ const ApiDashboard = async () => {
 
     return (
       <div className='container flex flex-col gap-6'>
+        {/* Dashboard Welcome Heading */}
         <LargeHeading>Welcome back, {user.user.name}</LargeHeading>
+        {/* API Key and Options */}
         <div className='flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center'>
           <Paragraph>Your API Key:</Paragraph>
           <Input className='w-fit truncate' readOnly value={activeApiKey.key} />
           <ApiKeyOptions apiKeyId={activeApiKey.id} apiKeyKey={activeApiKey.key}/>
         </div>
-
+        {/* API History Heading */}
         <Paragraph className='text-center md:text-left mt-4 mb-4'>
           Your API History
         </Paragraph>
+        {/* API History Table */}
         <Table userRequests={serialisableRequests} />
+        {/* Demo Component */}
+        <EditDemo activeApiKey={activeApiKey}/>
       </div>
     )
 }

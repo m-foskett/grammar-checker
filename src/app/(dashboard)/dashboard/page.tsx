@@ -17,17 +17,19 @@ const page = async () => {
     const user = await getServerSession(authOptions)
     // If there is no user found, throw a 404
     if (!user) return notFound()
-
-    // Find key where userId mathces user.user.id and the key is enabled
+    // Find key where userId matches user.user.id and the key is enabled
     const apiKey = await  db.apiKey.findFirst({
         where: { userId: user.user.id, enabled: true },
     })
+
     return (
         <div className='max-w-7xl mx-auto mt-16'>
             {/* If we have an ApiKey ? render the dashboard else render the API Request Component */}
             {apiKey ? (
-                // @ts-expect-error Server Component
-                <ApiDashboard/>
+                <div>
+                    {/* @ts-expect-error Server Component */}
+                    <ApiDashboard/>
+                </div>
             ) : (
                 <RequestApiKey />
             )}
