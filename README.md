@@ -1,38 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# grammar-checker
+This is a Grammar Checking API Dashboard application made using Next.JS 13, Typescript, Tailwind CSS, Prisma ORM and Sapling.ai.
 
-## Getting Started
+![Maintenance](https://img.shields.io/maintenance/yes/2023)
 
-First, run the development server:
+## :scroll: Table of Contents
+- [Screenshots](#computer-screenshots)
+- [Tech Stack](#books-tech-stack)
+- [Run Deployed Version](#running-run-deployed-version)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## :computer: Screenshots
+<div style="display: inline_block" align="center"><br>
+<!--  <img align="center" alt="Home Page"  width="800" src="/assets/home-page.PNG"> -->
+</div>
+<div style="display: inline_block" align="center"><br>
+<!--  <img align="center" alt="Collection Page"  width="500" src="/assets/collection-page.PNG"> -->
+<!--  <img align="center" alt="NFT Modal"  width="500" src="/assets/nft-modal-revealed.PNG"> -->
+</div>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## :books: Tech-Stack
+Below is a non-exhaustive list of the technologies utilised within this project.
+| Front End | Back End | Libraries |
+| ----------- | ----------- | ----------- |
+| Next.JS | Prisma ORM | Toast |
+| Tailwind CSS | Next-Auth | Framer Motion |
+| MUI: Material UI| Sapling.ai | Zod |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## :running: Run Deployed Version
+Deployed using Vercel at this domain:
