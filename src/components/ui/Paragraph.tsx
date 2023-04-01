@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 // First Argument: Consistent Style
 // Second Argument: Variants
 const paragraphVariants = cva(
-    "max-w-prose text-slate-700 dark:text-slate-300 mb-2 text-center",
+    "max-w-prose text-primary-700 dark:text-primary-300 mb-2 text-center",
     {
         variants: {
             size: {

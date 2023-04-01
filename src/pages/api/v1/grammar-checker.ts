@@ -78,6 +78,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             },
         })
         // Return success, original text and edits
+        // console.log(appliedText)
         return res.status(200).json({success: true, appliedText: appliedText})
     } catch (error) {
         // If not parsed correctly

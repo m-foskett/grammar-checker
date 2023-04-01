@@ -15,18 +15,25 @@ interface EditDemoProps {
 export default function EditDemo({activeApiKey}: EditDemoProps) {
     // State Variables
     const [text, setText] = useState<string>('')
+    const [editedText, setEditedText] = useState<string>('')
+    const [shouldFetch, setShouldFetch] = useState<boolean>(false)
     // useSWR implementation to make call to route handler
     // To Fix: stop calls on setText change
-    const {data: editsResponse, error, isLoading, mutate, isValidating } = useSWR(
-        [text, activeApiKey],
-        ([text, activeApiKey]) => editText(text, activeApiKey),
+    const {data, error, isLoading, mutate: submitText, isValidating } = useSWR(
+        shouldFetch ? ['/api/v1/grammar-checker', text, activeApiKey] : null,
+        ([url, text, activeApiKey]) => editText(url, text, activeApiKey),
         {
-            // revalidateIfStale: false,
-            revalidateOnFocus: false, // dont refresh page/reload info on return
+            revalidateOnFocus: false,
+            onSuccess: () => {
+                setEditedText(data.appliedText)
+                setShouldFetch(false);
+            }
         }
     )
+
     // Loading State
-    const loading = isLoading || isValidating;
+    const loading = isLoading;
+    const validating = isValidating;
     // Input Text Change Handler
     const textHandler = (event: ChangeEvent<HTMLInputElement>) => {
         // Get the input value from the event
@@ -51,13 +58,17 @@ export default function EditDemo({activeApiKey}: EditDemoProps) {
                 onChange={textHandler}
             />
             {/* Applied Text Output */}
-                <Input readOnly placeholder={editsResponse?.appliedText || 'Corrected result will appear here'} value={''}/>
+                <Input readOnly placeholder={editedText != '' ? editedText : shouldFetch ? 'Correcting...' : 'Corrected result will appear here'} value={''}/>
                 {/* <Input readOnly placeholder={'Corrected result will appear here'} value={''}/> */}
             {/* Submit Button */}
             <div className='mt-3 flex justify-center sm:mt-0 sm:ml-4 sm:flex-shrink-0'>
                 <Button
                     isLoading={loading}
-                    onClick={mutate}
+                    // onClick={submitText}
+                    onClick={()=>{
+                        setEditedText('');
+                        setShouldFetch(true);
+                    }}
                 >
                     Edit Text
                 </Button>

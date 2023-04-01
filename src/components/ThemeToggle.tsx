@@ -16,8 +16,8 @@ export function ThemeToggle() {
                 {/* Custom Button Component */}
                 <Button variant='ghost' size='sm'>
                     {/* Lucide React Icons */}
-                    <Icons.Sun className='rotate-0 scale-100 transition-all hover:text-slate-900 dark:-rotate-90 dark:scale-0 dark:text-slate-400 dark:hover:text-slate-100'/>
-                    <Icons.Moon className='absolute rotate-90 scale-0 transition-all hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100'/>
+                    <Icons.Sun className='rotate-0 scale-100 transition-all hover:text-primary-900 dark:-rotate-90 dark:scale-0 dark:text-primary-400 dark:hover:text-primary-100'/>
+                    <Icons.Moon className='absolute rotate-90 scale-0 transition-all hover:text-primary-900 dark:rotate-0 dark:scale-100 dark:text-primary-400 dark:hover:text-primary-100'/>
                     {/* Accessibility: Screen Read Only */}
                     <span className='sr-only'>Toggle Theme</span>
                 </Button>

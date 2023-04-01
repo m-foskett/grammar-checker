@@ -87,7 +87,7 @@ const Table = ({userRequests}: TableProps) => {
         <ThemeProvider theme={theme}>
             <DataGrid
                 style={{
-                    backgroundColor: applicationTheme === 'light' ? 'white' : '#152238',
+                    backgroundColor: applicationTheme === 'light' ? 'white' : '#065f46',
                     fontSize: '1rem',
                 }}
                 pageSizeOptions={[5]}
