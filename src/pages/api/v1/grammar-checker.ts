@@ -6,6 +6,7 @@ import {z} from 'zod'
 // Define a schema for the accepted request
 const reqSchema = z.object({
     text: z.string().max(1000),
+    language: z.string().max(3),
 })
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -21,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
         // Validate body of POST request against defined schema
-        const { text } = reqSchema.parse(body)
+        const { text, language } = reqSchema.parse(body)
         // Check if the API Key is currently valid
         const validApiKey = await db.apiKey.findFirst({
             where: {
@@ -45,7 +46,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             key: process.env.SAPLING_API_KEY,
             text: text,
             session_id: 'Test UUID',
-            lang: 'es',
+            lang: language,
             auto_apply: true, // True: result has extra field 'applied_text' with edits applied
         }
         // Make multiple requests simultaneously with Promise.all()

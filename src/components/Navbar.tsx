@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { buttonVariants } from '@/ui/Button'
 import SignInButton from '@/components/SignInButton'
 import SignOutButton from '@/components/SignOutButton'
-import ThemeToggle from './ThemeToggle'
+import ThemeToggle from '@/components/ThemeToggle'
 import { authOptions } from '@/lib/auth'
+import Image from 'next/image'
+import Paragraph from '@/ui/Paragraph'
 
 const Navbar = async () => {
     // Get user session
@@ -20,6 +22,21 @@ const Navbar = async () => {
                 >
                     Grammar Checker 1.0
                 </Link>
+                {/* Powered By Banner */}
+                <div className='hidden md:flex gap-3 items-center'>
+                    <Paragraph size={'sm'} className='text-center md:text-left mt-4 mb-4'>
+                        Powered by Sapling
+                    </Paragraph>
+                    <Image
+                        priority
+                        className='img-shadow'
+                        quality={100}
+                        width={25}
+                        height={25}
+                        src='/sapling.webp'
+                        alt='sapling'
+                    />
+                </div>
                 {/* Theme Toggle */}
                 <div className='md:hidden'>
                     <ThemeToggle />

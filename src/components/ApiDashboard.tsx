@@ -39,7 +39,7 @@ const ApiDashboard = async () => {
     }))
 
     return (
-      <div className='container flex flex-col gap-6'>
+      <div className='container flex flex-col gap-4'>
         {/* Dashboard Welcome Heading */}
         <LargeHeading>Welcome back, {user.user.name}</LargeHeading>
         {/* API Key and Options */}
@@ -48,14 +48,15 @@ const ApiDashboard = async () => {
           <Input className='w-fit truncate' readOnly value={activeApiKey.key} />
           <ApiKeyOptions apiKeyId={activeApiKey.id} apiKeyKey={activeApiKey.key}/>
         </div>
+        {/* Demo Component */}
+        <EditDemo activeApiKey={activeApiKey}/>
         {/* API History Heading */}
         <Paragraph className='text-center md:text-left mt-4 mb-4'>
           Your API History
         </Paragraph>
         {/* API History Table */}
         <Table userRequests={serialisableRequests} />
-        {/* Demo Component */}
-        <EditDemo activeApiKey={activeApiKey}/>
+
       </div>
     )
 }

@@ -2,7 +2,7 @@ import { ApiKey } from "@prisma/client"
 import { notFound } from "next/navigation"
 
 // Fetcher Function: wrapper function of native fetch
-export async function editText(url: string, text: string, activeApiKey: ApiKey) {
+export async function editText(url: string, text: string, language: string, activeApiKey: ApiKey) {
     // If no active API Key
     if(!activeApiKey) notFound()
     // Local API Route - maybe change to use Next.js 13 Routes
@@ -10,6 +10,7 @@ export async function editText(url: string, text: string, activeApiKey: ApiKey) 
     // Construct request data object
     const data = {
         text: text,
+        language: language,
     }
     // POST Request
     const res = await fetch(url, {
