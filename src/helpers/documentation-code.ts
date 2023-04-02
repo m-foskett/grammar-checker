@@ -2,10 +2,10 @@ export const nodejs = `const axios = require("axios");
 
 const options = {
     method: 'POST',
-    url: '/api/v1/grammar-checker',
+    url: 'https://grammar-checker-sigma.vercel.app/api/v1/grammar-checker'
     params: {
       text: 'Text to correct',
-      lang: 'en' // Language Abbreviation (See Sapling docs)
+      language: 'en' // Language Abbreviation (See Sapling docs)
     },
     headers: {
       'Authorization': 'YOUR_API_KEY',
@@ -20,10 +20,10 @@ axios.request(options).then(function (response) {
 
 export const python = `import requests
 
-url = '/api/v1/grammar-checker'
+url = 'https://grammar-checker-sigma.vercel.app/api/v1/grammar-checker'
 api_key = 'YOUR_API_KEY'
 text = 'Text to correct'
-lang = 'en'
+language = 'en'
 
 headers = {
     'Authorization': api_key
