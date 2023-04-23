@@ -24,5 +24,7 @@ Below is a non-exhaustive list of the technologies utilised within this project.
 | MUI: Material UI| Sapling.ai | Zod |
 
 ## :running: Run Deployed Version
-Deployed using Vercel at this domain:
-https://grammar-checker-sigma.vercel.app/
+Deployed using Vercel at this domain: https://grammar-checker-sigma.vercel.app/
+
+🔴 If the text edit demo doesn't work, it is likely due to revoked access to the Sapling API Key (Pro Plan feature).
+
