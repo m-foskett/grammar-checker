@@ -2,6 +2,9 @@
 This is a Grammar Checking API Dashboard application made using Next.JS 13, Typescript, Tailwind CSS, Prisma ORM and Sapling.ai.
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2023)
+![Website](https://img.shields.io/website?url=https%3A%2F%2F3d-animation-viewer.vercel.app%2F)
+![GitHub top language](https://img.shields.io/github/languages/top/m-foskett/grammar-checker)
+![GitHub last commit](https://img.shields.io/github/last-commit/m-foskett/grammar-checker)
 
 ## :scroll: Table of Contents
 - [Screenshots](#computer-screenshots)
