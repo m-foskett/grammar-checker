@@ -13,6 +13,7 @@ This is a Grammar Checking API Dashboard application made using Next.JS 13, Type
 
 ## :computer: Screenshots
 <div style="display: inline_block" align="center"><br>
+ <img align="center" alt="Demo Usage"  width="1200" src="/screenshots/demo_usage.gif">
  <img align="center" alt="Sign In Page"  width="1200" src="/public/signIn_screenshot.PNG">
  <img align="center" alt="Documentation Page"  width="1200" src="/public/documentation_screenshot.PNG">
  <img align="center" alt="Dashboard Page"  width="1200" src="/public/dashboard_screenshot.PNG">
